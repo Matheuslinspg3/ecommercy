@@ -93,7 +93,10 @@ export async function authClient() {
             jar.set(name, value, {
               ...options,
               httpOnly: true,
-              secure: process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") || false,
+              secure:
+                (process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL)?.startsWith(
+                  "https://",
+                ) || false,
               sameSite: "lax",
             }),
           );
@@ -136,7 +139,7 @@ export async function adminOrders(): Promise<Order[]> {
 }
 export function assertSameOrigin(request: Request) {
   const origin = request.headers.get("origin");
-  const site = process.env.NEXT_PUBLIC_SITE_URL;
+  const site = process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL;
   if (!origin || !site) throw new ApiError("Origem da solicitação não autorizada.", 403);
   try {
     if (new URL(origin).origin !== new URL(site).origin) throw new Error();

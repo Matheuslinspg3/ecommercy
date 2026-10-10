@@ -24,7 +24,7 @@ async function start(port, env) {
     ],
     {
       cwd: root,
-      env: { ...process.env, NEXT_TELEMETRY_DISABLED: "1", NEXT_PUBLIC_SITE_URL: url, ...env },
+      env: { ...process.env, NEXT_TELEMETRY_DISABLED: "1", SITE_URL: url, ...env },
       stdio: ["ignore", "pipe", "pipe"],
     },
   );
@@ -114,6 +114,12 @@ try {
   assert.ok(!liveHtml.includes("catálogo de exemplo"));
   assert.ok(!liveHtml.includes(backend.secret));
   assert.equal((await post(live, "/api/admin/products", {})).status, 401);
+  const crossOrigin = await fetch(`${live}/api/admin/products`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Origin: demo },
+    body: "{}",
+  });
+  assert.equal(crossOrigin.status, 403);
   const liveItems = [{ product_id: backend.product, quantity: 1, option_ids: [] }];
   const key = randomUUID();
   const body = {

@@ -21,7 +21,9 @@ export async function proxy(request: NextRequest) {
           response.cookies.set(name, value, {
             ...options,
             httpOnly: true,
-            secure: process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") || false,
+            secure:
+              (process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL)?.startsWith("https://") ||
+              false,
             sameSite: "lax",
           }),
         );
