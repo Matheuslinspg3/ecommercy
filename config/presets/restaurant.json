@@ -1,0 +1,41 @@
+{
+  "slug": "restaurant-exemplo",
+  "name": "Restaurante Exemplo",
+  "segment": "restaurant",
+  "tagline": "Perto de você, todos os dias.",
+  "description": "Sabores da nossa cozinha, no seu tempo. Escolha, personalize e peça direto com a gente.",
+  "branding": {
+    "primary": "#B84625",
+    "secondary": "#234B3D",
+    "background": "#F8F5EE",
+    "logo": ""
+  },
+  "contact": {
+    "whatsapp": "",
+    "phone": "",
+    "email": ""
+  },
+  "location": {
+    "city": "Sua cidade",
+    "state": "SP",
+    "address": "Endereço a configurar",
+    "hours": "Horários a configurar"
+  },
+  "sales": {
+    "pickup_enabled": true,
+    "delivery_enabled": true,
+    "min_order_cents": 1500,
+    "low_stock_threshold": 5
+  },
+  "demo_delivery_zones": [
+    {
+      "id": "00000000-0000-4000-8000-000000000201",
+      "name": "Região de exemplo",
+      "cep_start": "01000000",
+      "cep_end": "01999999",
+      "fee_cents": 500,
+      "free_from_cents": 8000,
+      "enabled": true
+    }
+  ]
+}
